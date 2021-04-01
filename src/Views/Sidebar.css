@@ -1,0 +1,111 @@
+.sidebar {
+  position: fixed;
+  width: 0px;
+  height: 100%;
+  background-color: #151c26;
+  visibility: hidden;
+  transition: all 0.15s ease-in-out;
+}
+
+/* for hiding the scroll bar */
+.sidebar::-webkit-scrollbar {
+  display: none !important;
+}
+
+.sidebar-show {
+  transition: all 0.15s ease-in;
+  visibility: visible;
+  width: 240px;
+}
+
+.sidebar-logo {
+  position: relative;
+  width: 100px;
+  margin-left: 50px;
+}
+
+.sidebar-logo-container {
+  padding-top: 20px;
+  align-items: center;
+  display: flex;
+  width: 20%;
+  height: 25px;
+}
+
+.sidebar-btn-container {
+  position: relative;
+  top: 20px;
+  font-size: 14px;
+}
+
+.sidebar-menu-icon {
+  position: relative;
+  color: white;
+  margin-left: 40px;
+}
+
+.sidebar-center-content {
+  display: flex;
+
+  flex-wrap: nowrap;
+  background-color: DodgerBlue;
+}
+
+.sidebar-btn {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  border-color: green;
+  color: white;
+}
+
+.sidebar-btn-border {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  background-color: transparent;
+  outline: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  border-color: green;
+  border-radius: 3px;
+  border-width: 5px;
+  color: white;
+}
+
+.sidebar-btn:hover {
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+.sidebar-divider {
+  position: relative;
+  margin-top: 15px;
+  height: 1px;
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+.sidebar-btn-bottom {
+  width: 100%;
+
+  padding-bottom: 20px;
+  padding-top: 20px;
+  align-items: center;
+  background-color: transparent;
+  outline: none;
+  border-left: none;
+  border-right: none;
+  border-color: rgba(128, 128, 128, 0.3);
+  color: white;
+}
+
+.sidebar-btn-bottom:hover {
+  background-color: rgba(128, 128, 128, 0.3);
+}

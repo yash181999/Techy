@@ -1,0 +1,11 @@
+.home-with-sidebar {
+  margin-left: 240px;
+}
+
+.home {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f5f8f9;
+}
+

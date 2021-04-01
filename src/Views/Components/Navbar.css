@@ -1,0 +1,92 @@
+.navbar {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    
+    background-color: white;
+  }
+  
+  .nav-heading {
+    
+    position: relative;
+    margin-left: 20px;
+  }
+  
+  .nav-leftContainer{
+        flex: 1;
+        display: flex;
+        left: 0px;
+        width: 50%;
+        align-items: center;
+        position: absolute;
+  }
+  
+  .nav-rightContainer {
+     right: 0px;
+     left: 72%;
+     width: 50%;
+     position: fixed;
+    align-items: center;
+    display: flex;
+  }
+  
+  
+  
+  .nav-search {
+     
+    
+    display: flex;
+    border: 1px solid;
+    border-radius: 20px;
+    border-color: #7f8891;
+    padding: 1px;
+    width: 200px;
+    height: 30px;
+    left: 30px;
+    align-items: center;
+  }
+  
+  .nav-searchIcon > svg_icons {
+    color: red;
+    size: 1px;
+  }
+  
+  .nav-searchInput {
+    font-size: 16px;
+    border: none;
+    outline: none;
+  }
+  
+  .nav-rightContainer > button {
+  
+    position: relative;
+    margin-left: 20px;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-transform: inherit !important;
+    background-color: #ff7779;
+    color: white;
+    width: 50px;
+    height: 35px;
+  }
+  
+  .nav-rightContainer > button:hover {
+        position: "relative";
+    background-color: #ff7779;
+    color: white;
+  }
+  
+  
+  .nav-avatar{
+      position: relative;
+      left: 20px;
+      color: white;
+      font-weight: bold;
+      padding: 10px;
+      background-color: goldenrod;
+      border-radius: 80px;
+  }
+  
+  
