@@ -1,92 +1,110 @@
 .navbar {
-    position: fixed;
-    z-index: 1;
-    width: 100%;
-    display: flex;
+  position: fixed;
+  
+  width: 100%;
+  display: flex;
+  background-color: ;
+}
+
+.nav-heading {
+  position: relative;
+  margin-left: 20px;
+}
+
+.nav-leftContainer {
+  flex: 1;
+  display: flex;
+  left: 0px;
+
+  align-items: center;
+}
+
+.nav-rightContainer {
+  right: 4%;
+  flex: 1;
+  position: fixed;
+  align-items: center;
+  display: flex;
+}
+
+.nav-search {
+  display: flex;
+  border: 1px solid;
+  border-radius: 20px;
+  border-color: #7f8891;
+  padding: 1px;
+  width: 200px;
+  height: 30px;
+  align-items: center;
+  position: relative;
+  transition: width 0.2s ease;
+}
+
+.nav-searchClick {
+  width: 400px;
+}
+
+.nav-searchIcon > svg_icons {
+  color: red;
+  size: 1px;
+}
+
+.nav-searchInput {
+  font-size: 16px;
+  width: 100%;
+  background-color: #f5f8f9;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+}
+
+.nav-rightContainer > button {
+  position: relative;
+  margin-left: 20px;
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: inherit !important;
+  background-color: #ff7779;
+  color: white;
+  width: 50px;
+  height: 35px;
+}
+
+.nav-rightContainer > button:hover {
+  position: "relative";
+  background-color: #ff7779;
+  color: white;
+}
+
+.nav-avatar {
+  position: relative;
+  left: 20px;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  background-color: goldenrod;
+  border-radius: 80px;
+}
+
+.submenu {
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);;
+    position: absolute;
+    top: 4rem;
+    left: 50%;
     
-    background-color: white;
+    z-index: 3;
+    display: block;
+    padding: 2rem;
+    border-radius: 0.25rem;
+    transition:  all 0.3s linear;
   }
-  
-  .nav-heading {
-    
-    position: relative;
-    margin-left: 20px;
-  }
-  
-  .nav-leftContainer{
-        flex: 1;
-        display: flex;
-        left: 0px;
-        width: 50%;
-        align-items: center;
-        position: absolute;
-  }
-  
-  .nav-rightContainer {
-     right: 0px;
-     left: 72%;
-     width: 50%;
-     position: fixed;
-    align-items: center;
-    display: flex;
-  }
-  
-  
-  
+
+
+@media screen and (max-width: 940px) {
   .nav-search {
-     
-    
-    display: flex;
-    border: 1px solid;
-    border-radius: 20px;
-    border-color: #7f8891;
-    padding: 1px;
-    width: 200px;
-    height: 30px;
-    left: 30px;
-    align-items: center;
+    display: none;
   }
-  
-  .nav-searchIcon > svg_icons {
-    color: red;
-    size: 1px;
-  }
-  
-  .nav-searchInput {
-    font-size: 16px;
-    border: none;
-    outline: none;
-  }
-  
-  .nav-rightContainer > button {
-  
-    position: relative;
-    margin-left: 20px;
-    border-radius: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    text-transform: inherit !important;
-    background-color: #ff7779;
-    color: white;
-    width: 50px;
-    height: 35px;
-  }
-  
-  .nav-rightContainer > button:hover {
-        position: "relative";
-    background-color: #ff7779;
-    color: white;
-  }
-  
-  
-  .nav-avatar{
-      position: relative;
-      left: 20px;
-      color: white;
-      font-weight: bold;
-      padding: 10px;
-      background-color: goldenrod;
-      border-radius: 80px;
-  }
-  
-  
+}
+
