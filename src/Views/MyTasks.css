@@ -1,0 +1,40 @@
+.tasks-with-sidebar {
+    transition: all 0.1s linear;
+    margin-left: 240px;
+    overflow: hidden;
+   
+  }
+  
+  .tasks {
+    background-color:  #f5f8f9;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.3s linear;  
+    background-color: white;
+  }
+
+  .tasks-center{
+      width: 100%;
+      margin-left: 20px;
+      margin-right: auto;
+      overflow: scroll;
+      overflow-y: hidden;
+  white-space: nowrap;
+  display: inline-flex;
+  }
+
+  .task-container{
+      width: 300px;
+      padding: 20px;
+      height: 100vh;      
+  }
+
+  .drawer{
+      background-color: black;
+      position: absolute;
+      z-index: 3;
+      right: 0px;
+      width: 40%;
+      height: 100%;
+  }

@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import './Sidebar.css'
 import logo from '../logo.png'
-import { AllOut, CheckCircleOutlineSharp, DashboardOutlined,Menu, HomeOutlined, NotificationsNone, NotificationsOutlined } from '@material-ui/icons'
-import {  IconButton } from '@material-ui/core'
+import {  IconButton} from '@material-ui/core'
 import { useGlobalContext } from '../context'
+import { AllOut, AllOutSharp, CheckCircle, Dashboard, Home, Inbox , Menu} from '@material-ui/icons'
+import { Link } from 'react-router-dom'
 function Sidebar() {
 
     const {isSidebarOpen, closeSidebar} = useGlobalContext();
@@ -12,6 +13,10 @@ function Sidebar() {
 
     return (
         <div className={`${isSidebarOpen ? 'sidebar sidebar-show' : 'sidebar'}`}>
+
+          <div className='sidebar-top'>
+
+         
             <div className='sidebar-logo-container'>
              <img src={logo} alt='logo' className='sidebar-logo'></img>    
            
@@ -20,46 +25,61 @@ function Sidebar() {
             </IconButton>
             </div>
 
-
+            
             <div className='sidebar-btn-container'>
+              <Link to='/'>
                 <button className='sidebar-btn'>
-                  <HomeOutlined className='sidebar-btn-icon'/>
+                  <Home className='sidebar-btn-icon' fontSize = 'small'/>
                    <p className='sidebar-btn-content'>Home</p>
-                </button>
+                 </button>
+              </Link>
+               
 
-                <button className='sidebar-btn'>
-                   <DashboardOutlined className='sidebar-btn-icon'/>
+              <Link to={'/dashboard'} >
+               <button className='sidebar-btn' >
+                   <Dashboard className='sidebar-btn-icon'  fontSize = 'small'/>
                    <p className='sidebar-btn-content'>DashBoard</p>
                 </button>
-
+              </Link>      
+               
+              <Link to={'/mytasks'} >
                 <button className='sidebar-btn'>
-                  <CheckCircleOutlineSharp/>
+                  <CheckCircle fontSize = 'small'/>
                    <p className='sidebar-btn-content'>My Tasks</p>
                 </button>
+              </Link >
 
                 <button className='sidebar-btn'>
-                  <NotificationsOutlined/>
+                  <Inbox fontSize = 'small'/>
                    <p className='sidebar-btn-content'>Inbox</p>
                 </button>
 
                 <button className='sidebar-btn'>
-                  <AllOut/>
+                   <AllOutSharp fontSize = 'small'/> 
                    <p className='sidebar-btn-content'>My Goals</p>
                 </button>
                 
             </div>
 
             <div className='sidebar-divider'></div>
+          </div>
+
+           <div className='sidebar-middle'>
+            middle
+           </div>
 
            
 
+           <div className='sidebar-bottom'>
             <button className='sidebar-btn-bottom'>
-                Invite teammates
-            </button>
+                  Invite teammates
+              </button>
 
-            <button className='sidebar-btn-bottom'>
-                Invite teammates
-            </button>
+              <button className='sidebar-btn-bottom'>
+                  Invite teammates
+              </button>
+           </div>
+           
 
            
 

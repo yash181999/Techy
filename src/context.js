@@ -9,6 +9,8 @@ const AppProvider = ({children}) => {
 
     const [addDropdown, setShowAddDropdown] = useState(false);
 
+    const [showDrawer,setShowDrawer] = useState(false);
+
     const openSidebar = () => {
         setIsSidebarOpen(true);
     }
@@ -27,7 +29,18 @@ const AppProvider = ({children}) => {
 
 
     return <AppContext.Provider value = {
-        {isSidebarOpen,addDropdown,openSidebar,closeSidebar,searchClicked,showAddDropdown,hideAddDropdown,setSearchClicked}
+        {
+            isSidebarOpen,
+            addDropdown,
+            openSidebar,
+            closeSidebar,
+            searchClicked,
+            showAddDropdown,
+            hideAddDropdown,
+            setSearchClicked,
+            showDrawer,
+            setShowDrawer
+        }
     } >{children}</AppContext.Provider>
 
 }

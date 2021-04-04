@@ -1,0 +1,82 @@
+.dashboard-with-sidebar {
+  transition: all 0.1s linear;
+  margin-left: 240px;
+  overflow: hidden;
+}
+
+.dashboard {
+  width: 100%;
+  overflow: hidden;
+  overflow-x: hidden;
+  height: 100vh;
+  transition: all 0.3s linear;  
+  background-color: white;
+}
+.dashboard-center {
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+  position: relative;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chart-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  
+}
+
+.barchart-container{
+  height: 300px;
+  width: 45%;
+}
+.piechart-container{
+  position: relative;
+  height: 300px;
+  width: 45%;
+}
+.pie-chart{
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-cardContainer {
+  margin-top: 20px;
+  margin-left: 1.35%;
+  position: relative;
+  
+  display: flex; 
+  align-items: center;
+ 
+  justify-content: space-around;
+}
+
+.task-card {
+  margin: 2%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color:white;
+  
+  height: 100px;
+  width: 250px;
+}
+
+.task-card > h4{
+  position: relative;
+  margin-top: 10px;
+  margin-right: auto;
+  margin-left: 5px;
+ 
+}
+
+.task-card  > span{
+   position: relative;
+   margin-left: 10px;
+   margin-top: auto;
+   margin-bottom: auto;
+}

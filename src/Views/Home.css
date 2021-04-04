@@ -1,11 +1,90 @@
 .home-with-sidebar {
+  transition: all 0.1s linear;
   margin-left: 240px;
 }
 
 .home {
   width: 100%;
   height: 100vh;
+  transition: all 0.3s linear;
+  display: block;
   overflow: hidden;
-  background-color: #f5f8f9;
+  background-color: white;
 }
 
+.home-centerContent {
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 5%;
+  position: relative;
+  
+  display: block;
+
+}
+.home-dropList {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.home-dropList-headLeft {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.home-dropList-headRight{
+      color: lightskyblue;
+}
+.home-divider {
+  position: relative;
+  color: gray;
+  border: 0.2px solid lightblue;
+  width: 100%;
+}
+.taskDueSoon{
+      position: relative;
+      justify-content: center;
+      margin-top: 15px;
+      color: grey;
+}
+
+.recent-projects{
+      position: relative;
+      height: 210px;
+      margin-top: 20px;
+      padding-top: 20px;
+      width: 150px;
+      border-radius: 20px;
+      transition: all 0.1s linear;
+}
+
+.recent-projects:hover{
+      transition: all 0.1s linear;
+      transform: scale(1.1);
+      background-color: #f5f8f9;  
+      /* position: relative;
+      height: 210px;
+      margin-top: 20px;
+      padding-top: 20px;
+      width: 150px;
+      border-radius: 20px; */
+}
+
+.add-project{
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      width: 130px;
+      height: 130px;
+      display: flex;
+      border-radius: 20px;
+      background-color: lightsteelblue;
+}
+
+.add-project>p{
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      color: red;
+}
