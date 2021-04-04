@@ -11,7 +11,7 @@ let useClickOutside = (handler) => {
     const domNode  = useRef();
     useEffect(() => {
         let maybeHandler = (e) => {
-            if(!domNode.current.contains(e.target)) {
+            if(domNode.current && !domNode.current.contains(e.target)) {
 
                 handler();
             }
@@ -35,7 +35,7 @@ function Navbar({title}) {
 
     const {showAddDropdown, hideAddDropdown, addDropdown} = useGlobalContext();
 
-    
+
     const domNode =  useClickOutside(() => {
          hideAddDropdown();
          setSearchClicked(false);

@@ -1,49 +1,47 @@
-import { IconButton} from '@material-ui/core';
+import { Fade, IconButton} from '@material-ui/core';
 import { Add, CalendarViewDay, CheckCircleOutline, DateRange, MoreHoriz } from '@material-ui/icons';
 import React, { useEffect, useRef, useState } from 'react'
 import { useGlobalContext } from '../context';
-import TempDrawer from './Components/Drawer';
+import Drawer from './Components/Drawer';
 import Navbar from './Components/Navbar';
 import TaskContainer from './Components/TaskContainer';
 import './MyTasks.css'
+
+
 
 function MyTasks() {
 
     const {isSidebarOpen, openSidebar} = useGlobalContext();
     const {showDrawer,setShowDrawer} = useGlobalContext();
-    const node = useRef();
+    const domNode = useRef();
+
+
+   
+
+  // showing and hiding the drawer..
+    useEffect(() => {
+       const handler =  (event) => {
+            if(domNode.current && !domNode.current.contains(event.target)) {
+                setShowDrawer(false);
+            }
+        }
+        document.addEventListener('mousedown',handler);
+        return () => {
+            document.removeEventListener('mousedown',handler)
+        }
+    })
     
-    // useEffect(() =>{ 
-        
-    //     document.addEventListener('mousedown', handleClick);
 
-    //     return () =>{
-    //        document.removeEventListener('mousedown', handleClick);     
-    //     }
-        
-        
-
-    // },[showDrawer]);
-
-    // const handleClick = (e) => {
-    //     if(node.current.matches(e.target)) {
-    //         return;
-    //     }
-    //     setShowDrawer(false);
-    // }
-
-
-
+  
    
     return (
         <div className={isSidebarOpen ? 'tasks-with-sidebar dashboard': 'tasks'}>
              <Navbar title={'My Tasks'}  className='navbar'/>
-              <div >
+              <div ref = {domNode}  >
               {
+                
                 showDrawer &&     
-                    <div ref= {node} className= 'drawer'>
-                    hello dud
-                    </div>
+                    <Drawer/>
 
               } 
               </div>

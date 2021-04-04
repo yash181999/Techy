@@ -5,9 +5,13 @@ import {  IconButton} from '@material-ui/core'
 import { useGlobalContext } from '../context'
 import { AllOut, AllOutSharp, CheckCircle, Dashboard, Home, Inbox , Menu} from '@material-ui/icons'
 import { Link } from 'react-router-dom'
+import sidebarData from '../sidebarData'
+
 function Sidebar() {
 
     const {isSidebarOpen, closeSidebar} = useGlobalContext();
+
+    
 
   
 
@@ -27,37 +31,17 @@ function Sidebar() {
 
             
             <div className='sidebar-btn-container'>
-              <Link to='/'>
-                <button className='sidebar-btn'>
-                  <Home className='sidebar-btn-icon' fontSize = 'small'/>
-                   <p className='sidebar-btn-content'>Home</p>
-                 </button>
-              </Link>
-               
-
-              <Link to={'/dashboard'} >
-               <button className='sidebar-btn' >
-                   <Dashboard className='sidebar-btn-icon'  fontSize = 'small'/>
-                   <p className='sidebar-btn-content'>DashBoard</p>
-                </button>
-              </Link>      
-               
-              <Link to={'/mytasks'} >
-                <button className='sidebar-btn'>
-                  <CheckCircle fontSize = 'small'/>
-                   <p className='sidebar-btn-content'>My Tasks</p>
-                </button>
-              </Link >
-
-                <button className='sidebar-btn'>
-                  <Inbox fontSize = 'small'/>
-                   <p className='sidebar-btn-content'>Inbox</p>
-                </button>
-
-                <button className='sidebar-btn'>
-                   <AllOutSharp fontSize = 'small'/> 
-                   <p className='sidebar-btn-content'>My Goals</p>
-                </button>
+              
+              {
+                sidebarData.map((data)=> {
+                 return ( <Link to={data.link} >
+                  <button id = {window.location.pathname === data.link ? 'active' : ''} className='sidebar-btn' >
+                      {data.icon}
+                      <p className='sidebar-btn-content'>{data.name}</p>
+                   </button>
+                 </Link>)   
+                })
+              }
                 
             </div>
 

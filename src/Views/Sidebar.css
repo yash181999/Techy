@@ -51,6 +51,10 @@
   font-size: 14px;
 }
 
+.sidebar-btn-container #active{
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
 .sidebar-menu-icon {
   position: relative;
   color: white;
@@ -78,6 +82,7 @@
   color: white;
 }
 
+
 .sidebar-btn-border {
   width: 100%;
   display: flex;
@@ -98,8 +103,9 @@
   margin-left: 10px;
 }
 
+
 .sidebar-btn:hover {
-  background-color: rgba(128, 128, 128, 0.3);
+  background-color: rgba(128, 128, 128, 0.1);
 }
 
 .sidebar-divider {
@@ -126,3 +132,4 @@
 .sidebar-btn-bottom:hover {
   background-color: rgba(128, 128, 128, 0.3);
 }
+

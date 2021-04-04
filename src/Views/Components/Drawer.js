@@ -1,81 +1,100 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import { Button } from '@material-ui/core'
+import { CalendarViewDayRounded, DateRangeSharp, Done } from '@material-ui/icons'
+import React, { useEffect, useRef, useState } from 'react'
+import './Drawer.css'
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import {DateRange, DateRangePicker} from 'react-date-range';
 
-const useStyles = makeStyles({
-  list: {
-    width: 600,
-  },
-  fullList: {
-    width: 'auto',
-  },
-});
 
-export default function TempDrawer() {
-  const classes = useStyles();
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
+function Drawer() {
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
+     const [startDate,setStartDate] = useState((new Date()).toDateString());
+     const [endDate, setEndDate] = useState((new Date()).toDateString());
+     const [showDatePicker,setShowDatePicker] = useState(false);
+     const domNode = useRef();
+
+    const selectionRange = {
+        startDate :new Date(),
+        endDate :new Date(),
+        key : 'selection'
     }
 
-    setState({ ...state, [anchor]: open });
-  };
+    function handleSelect(ranges) {
+        
+        setStartDate(ranges.selection.startDate.toDateString());
+        setEndDate(ranges.selection.endDate.toDateString());
+    }
+    
 
-  const list = (anchor) => (
-    <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-      })}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
 
-  return (
-    <div>
-     
-        <React.Fragment>
-          <Button onClick={toggleDrawer("Right", true)}>{'Right'}</Button>
-          <Drawer anchor={'Right'} open={state['Right']} onClose={toggleDrawer('Right', false)}>
-            {list('Right')}
-          </Drawer>
-        </React.Fragment>
-      
-    </div>
-  );
+   
+
+    // showing and hiding the drawer..
+      useEffect(() => {
+         const handler =  (event) => {
+              if(domNode.current && !domNode.current.contains(event.target)) {
+                  setShowDatePicker(false);
+              }
+          }
+          document.addEventListener('mousedown',handler);
+          return () => {
+              document.removeEventListener('mousedown',handler)
+          }
+      })
+
+
+
+    return (
+        <div  className= 'drawer'>
+           <Button className='markComplete-btn'><Done  size='small' />Mark Complete</Button>
+          <div className ='task-titleContainer'>
+              <input type = 'text' className='task-titleInput' value = 'Make my project'>
+              
+              </input>
+          </div> 
+          <div className='task-info'>
+             <div className ='infoTitle'>
+                <div className='title-head'>
+                    Assigne
+                </div>
+                <div className='title-head'>
+                    Due Date
+                </div>
+                <div className='title-head'>
+                    Description
+                </div>
+             </div>
+
+             <div className ='info'>
+                <div className='info-desc'>
+                    Assigne
+                </div>
+                <div className='info-desc'>
+                    <div onClick={() => setShowDatePicker(true)} className='date-picker'>
+                        <DateRangeSharp  size='small'/> 
+                        <span>{` ${startDate} - `}</span> <span>{` ${endDate} - `}</span> 
+                        <div ref={domNode} className='show-picker'>
+                       
+                            {
+                            showDatePicker &&   
+                                    <DateRange ranges={
+                                    [selectionRange]
+                                } onChange = {handleSelect}></DateRange>
+                                
+                            }
+                        </div> 
+                    </div>
+                </div>
+                <div className='info-desc'>
+                    Description
+                </div>
+             </div>
+
+             
+          </div>
+        </div>
+    )
 }
+
+export default Drawer
