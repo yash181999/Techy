@@ -4,7 +4,7 @@ import { AllOut, AllOutSharp, CheckCircle, Dashboard, Home, Inbox , InboxOutline
 
  const sidebarData = [
     {
-        link : '/',
+        link : '/home',
         name: "Home",
         icon : <Home fontSize='small'/>
 
@@ -28,7 +28,7 @@ import { AllOut, AllOutSharp, CheckCircle, Dashboard, Home, Inbox , InboxOutline
 
     },
     {
-        link : '/mygoals',
+        link : '/goals',
         name: "My Goals",
         icon : <AllOut fontSize='small'/>,
 

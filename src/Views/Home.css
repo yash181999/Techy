@@ -49,6 +49,20 @@
       color: grey;
 }
 
+.welcomeNote-container{
+  position: relative;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-note{
+ 
+  font-size: 28px;
+}
+
+
 .recent-projects{
       position: relative;
       height: 210px;

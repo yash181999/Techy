@@ -1,21 +1,50 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from './Sidebar'
 import './Home.css'
 import { useGlobalContext } from '../context'
 import Navbar from './Components/Navbar'
 import { ArrowDropDown, ArrowLeft, ArrowRight } from '@material-ui/icons'
 import { IconButton } from '@material-ui/core'
+import { auth, db } from '../firebase'
+import { useStateValue } from '../StateProvider'
 
 function Home() {
 
     const {isSidebarOpen, openSidebar} = useGlobalContext();
 
+    // const [userName, setUserName] = useState(null);
 
+    const {userName,uId} = useGlobalContext();
+
+    // const [{user}, dispatch] = useStateValue();
+
+    // useEffect(() => {
+        
+    //     if(user!=null){
+    //         db.collection('Users').doc(user.uid).get().then((val) => {
+    //            setUserName(val.data().name)
+    //         })
+    //     }
+
+
+    // }, [user])
+
+
+
+    
     return (
         <div className={isSidebarOpen ? 'home-with-sidebar home': 'home'}>
        <Navbar title={'Home'} />
+           <div className='welcomeNote-container'>
+               {
+                   userName != null && <div className ='welcome-note'>Welcome {userName}</div> 
+               }
+           </div>
         <div className='home-centerContent'>
+
+          
+
             <div className='home-dropList'>
                 <div className='home-dropList-headLeft'>
                     <IconButton>

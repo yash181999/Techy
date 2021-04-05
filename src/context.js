@@ -1,4 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import { db } from './firebase';
+import { useStateValue } from './StateProvider';
 const AppContext = React.createContext();
 
 
@@ -10,6 +12,24 @@ const AppProvider = ({children}) => {
     const [addDropdown, setShowAddDropdown] = useState(false);
 
     const [showDrawer,setShowDrawer] = useState(false);
+
+    const[userName, setUserName] = useState(null);
+
+    const[uId, setUId] = useState(null);
+
+    const [{user}, dispatch] = useStateValue();
+
+    useEffect(() => {
+        
+        if(user!=null){
+            db.collection('Users').doc(user.uid).get().then((val) => {
+               setUserName(val.data().name)
+               setUId(user.uid);
+            })
+        }
+
+
+    }, [user])
 
     const openSidebar = () => {
         setIsSidebarOpen(true);
@@ -39,7 +59,11 @@ const AppProvider = ({children}) => {
             hideAddDropdown,
             setSearchClicked,
             showDrawer,
-            setShowDrawer
+            setShowDrawer,
+            userName,
+            setUserName,
+            uId,
+            setUId,
         }
     } >{children}</AppContext.Provider>
 

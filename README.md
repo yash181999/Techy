@@ -70,35 +70,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-
-// <Link to='/'>
-                <button id='1' className='sidebar-btn'>
-                  <Home className='sidebar-btn-icon' fontSize = 'small'/>
-                   <p className='sidebar-btn-content'>Home</p>
-                 </button>
-              </Link>
-               
-
-              <Link to={'/dashboard'} >
-               <button id='2'  className='sidebar-btn' >
-                   <Dashboard className='sidebar-btn-icon'  fontSize = 'small'/>
-                   <p className='sidebar-btn-content'>DashBoard</p>
-                </button>
-              </Link>      
-               
-              <Link to={'/mytasks'} >
-                <button id='3' className='sidebar-btn'>
-                  <CheckCircle fontSize = 'small'/>
-                   <p className='sidebar-btn-content'>My Tasks</p>
-                </button>
-              </Link >
-
-                <button id='4'  className='sidebar-btn'>
-                  <Inbox fontSize = 'small'/>
-                   <p className='sidebar-btn-content'>Inbox</p>
-                </button>
-
-                <button id='5'  className='sidebar-btn'>
-                   <AllOutSharp fontSize = 'small'/> 
-                   <p className='sidebar-btn-content'>My Goals</p>
-                </button> //

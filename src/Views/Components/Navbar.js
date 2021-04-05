@@ -12,7 +12,6 @@ let useClickOutside = (handler) => {
     useEffect(() => {
         let maybeHandler = (e) => {
             if(domNode.current && !domNode.current.contains(e.target)) {
-
                 handler();
             }
         }
@@ -61,10 +60,9 @@ function Navbar({title}) {
 
         
         
-
        <div class='nav-rightContainer'>
 
-       <div ref = {domNode} className={searchClicked ? 'nav-search nav-searchClick' : 'nav-search'} 
+        <div ref = {domNode} className={searchClicked ? 'nav-search nav-searchClick' : 'nav-search'} 
          onClick={()=>setSearchClicked(!searchClicked)}>
              <div >
              <Search  className='nav-searchIcon' />
