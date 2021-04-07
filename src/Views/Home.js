@@ -13,22 +13,22 @@ function Home() {
 
     const {isSidebarOpen, openSidebar} = useGlobalContext();
 
-    // const [userName, setUserName] = useState(null);
+    const [userName, setUserName] = useState(null);
 
-    const {userName,uId} = useGlobalContext();
+    
 
-    // const [{user}, dispatch] = useStateValue();
+    const [{user}, dispatch] = useStateValue();
 
-    // useEffect(() => {
+    useEffect(() => {
         
-    //     if(user!=null){
-    //         db.collection('Users').doc(user.uid).get().then((val) => {
-    //            setUserName(val.data().name)
-    //         })
-    //     }
+        if(user!=null){
+            db.collection('Users').doc(user.uid).onSnapshot((val) => {
+               setUserName(val.data().name)
+            })
+        }
 
 
-    // }, [user])
+    }, [user])
 
 
 

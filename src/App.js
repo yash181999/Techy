@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Sidebar from './Views/Sidebar';
 import Home from './Views/Home'
@@ -29,7 +28,7 @@ function App() {
             user: authUser
           })
        }else{
-         //the user is logged out
+         console.log('logged out')
          dispatch({
           type: 'SET_USER',
           user: null,
@@ -47,14 +46,12 @@ function App() {
        <Switch>
 
        <Route path="/dashboard">
-            <Sidebar/>
-            
+            <Sidebar/>           
             <Dashboard/>
           </Route> 
 
           <Route path="/mytasks">
             <Sidebar/>
-            
             <MyTasks/>
           </Route> 
 
@@ -63,12 +60,10 @@ function App() {
 
           <Route path="/goals">
             <Sidebar/>
-            
             <Goals/>
           </Route> 
           <Route path="/inbox">
             <Sidebar/>
-            
             <Inbox/>
           </Route> 
 

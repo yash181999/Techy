@@ -2,7 +2,8 @@ import { Fade, IconButton} from '@material-ui/core';
 import { Add, CalendarViewDay, CheckCircleOutline, DateRange, MoreHoriz } from '@material-ui/icons';
 import React, { useEffect, useRef, useState } from 'react'
 import { useGlobalContext } from '../context';
-import { db } from '../firebase';
+import { auth, db } from '../firebase';
+import { useStateValue } from '../StateProvider';
 import Drawer from './Components/Drawer';
 import Navbar from './Components/Navbar';
 import TaskContainer from './Components/TaskContainer';
@@ -15,8 +16,10 @@ function MyTasks() {
     const {isSidebarOpen, openSidebar} = useGlobalContext();
     const {showDrawer,setShowDrawer} = useGlobalContext();
     const domNode = useRef();
-    const {uId} = useGlobalContext();
-    const [taskTypes,setTaskTypes] = useState([]);
+    const [{user},dispatch] = useStateValue();
+    const [taskTypes, setTaskTypes] = useState([]);
+   
+   
    
 
   // showing and hiding the drawer..
@@ -35,25 +38,28 @@ function MyTasks() {
     });
 
     useEffect(() => {
-        getTasksFromFirestore();
-    },);
+          getTaskTypesFromFireStore();
+    },[user])
 
 
+    const getTaskTypesFromFireStore = () =>{
+           let tasks = [];
+           if(user){
+            db.collection("Users").doc(user.uid).onSnapshot((query) => {
+                const data = query.data();
+                tasks = data.tasktypes;
+                setTaskTypes(tasks);
+            }); 
+           }
 
-    const getTasksFromFirestore = async (e) => {
-        try{
-            
-          await  db.collection("Users").doc(uId).onSnapshot(querySnapShot => {
-                const data = querySnapShot.data();
-                setTaskTypes(data.tasktypes);   
-                console.log(data.tasktypes);
-            })
-        }
-        catch (e){
-           console.log(e)
-        }
+               
+
     }
+
     
+
+
+
 
   
    
@@ -72,7 +78,7 @@ function MyTasks() {
                
                {
                   taskTypes.map((val,i) => {
-                    return  <TaskContainer index = {i} taskType = {val}></TaskContainer>
+                    return  <TaskContainer key = {val.docId} taskType = {val}></TaskContainer>
                   })
                  
                }

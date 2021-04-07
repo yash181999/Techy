@@ -17,15 +17,23 @@ const AppProvider = ({children}) => {
 
     const[uId, setUId] = useState(null);
 
+    const[drawerData, setDrawerData] = useState(null);
+    
+
+    
+
     const [{user}, dispatch] = useStateValue();
 
-    useEffect(() => {
+    useEffect( () => {
         
         if(user!=null){
-            db.collection('Users').doc(user.uid).get().then((val) => {
+             db.collection('Users').doc(user.uid).get().then((val) => {
                setUserName(val.data().name)
                setUId(user.uid);
             })
+    
+        }else{
+            console.log('user is null');
         }
 
 
@@ -64,6 +72,10 @@ const AppProvider = ({children}) => {
             setUserName,
             uId,
             setUId,
+            drawerData,
+            setDrawerData
+            
+            
         }
     } >{children}</AppContext.Provider>
 

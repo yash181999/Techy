@@ -4,6 +4,8 @@ import { useGlobalContext } from '../../context';
 import './TaskListItem.css'
 import { IconButton } from '@material-ui/core';
 import { DateRange} from 'react-date-range';
+import { useStateValue } from '../../StateProvider';
+import { db } from '../../firebase';
 
 let useClickOutside = (handler) => {
     const domNode  = useRef();
@@ -26,13 +28,16 @@ let useClickOutside = (handler) => {
 
 }
 
-function TaskListItem() {
+function TaskListItem({ taskType,docId,title,assigne}) {
     const [showInfo, setShowInfo] = useState(false);
     const [showDatePicker,setShowDatePicker] = useState(false);
     const [startDate,setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+    const [{user}]  = useStateValue();
 
     const {showDrawer, setShowDrawer} = useGlobalContext();
+
+    const {drawerData, setDrawerData} = useGlobalContext();
 
 
    const selectionRange = {
@@ -78,49 +83,44 @@ function TaskListItem() {
 
         
     }
+    const markDone = async(e) => {
+        e.stopPropagation();
+
+
+        db.collection('Users').doc(user.uid).collection(`Task${taskType}`).doc(docId).delete();
+        console.log(docId);
+        await db.collection('Users').doc(user.uid).collection(`TaskDone`).doc().set({
+                'title'  : title,
+                'assigne' : assigne,
+                'time' : Date.now(),
+        });       
+    }
+
+
+    const openDrawer = () => {
+        setShowDrawer(true);
+        setDrawerData({
+             docId : docId,
+             taskType : taskType,
+                  
+        });
+    }
+
 
     return (
         <div className='task' 
-                   onClick={() => setShowDrawer(true)} 
+                   onClick={openDrawer} 
                    onMouseOver={handleMouseHover} 
                    onMouseLeave={handelMouseLeave}>
                      
                       <div className = 'task-detail'>
-                        <IconButton>
+                         { taskType !== 'Done' && <IconButton onClick = {markDone}>
                             <CheckCircleOutline size='small'/>
-                        </IconButton>
-                        <p>Hello what do you want to do</p>
+                        </IconButton>}
+                        <p>{title}</p>
                       </div>
 
                      
-                      {
-                          showInfo && 
-                          <div class='task-infoContainer'>
-                            <div class='task-infoBtn'>
-                                <IconButton size = 'small'>
-                                    <MoreHoriz/>
-                                </IconButton>  
-                            </div>    
-
-                            <div className = 'task-infoBottom'>
-                              <IconButton onClick={handleDatePicker}>
-                                  <DateRangeSharp size='small'/>
-                              </IconButton>  
-                            </div>
-                            
-                            <div onClick = {(e) => e.stopPropagation()}  useRef = {datePickerNode} className='show-date-picker'>
-                       
-                            {
-                            showDatePicker &&   
-                                    <DateRange ranges={
-                                    [selectionRange]
-                                } onChange = {handleSelect}></DateRange>
-                                
-                            }
-                            </div> 
-                                
-                         </div>
-                      }
                    </div>
     )
 }

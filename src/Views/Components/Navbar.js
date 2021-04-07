@@ -54,7 +54,7 @@ function Navbar({title}) {
      
         </div>   
 
-        <div class='nav-center'>
+        <div className='nav-center'>
 
         </div>
 
