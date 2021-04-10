@@ -2,11 +2,13 @@
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19); */
   padding: 10px;
   background-color: white;
   border-radius: 5px;
   margin-bottom: 20px;
+  background-color: #FF6666;
+  color: white;
 }
 
 .task-infoBtn {
@@ -17,6 +19,7 @@
   z-index: 1;
   background-color: white;
   width: 30px;
+  color : white;
   border-radius: 5px;
 }
 
@@ -55,4 +58,11 @@ select {
   left: auto;
   margin-top: 5px;
   z-index: 7;
+}
+.task-desc{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }

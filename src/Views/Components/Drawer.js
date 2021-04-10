@@ -6,7 +6,7 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import {DateRange, DateRangePicker} from 'react-date-range';
 import { useGlobalContext } from '../../context';
-import { db } from '../../firebase';
+import { auth, db } from '../../firebase';
 import { useStateValue } from '../../StateProvider';
 import { Shimmer } from 'react-shimmer';
 
@@ -63,7 +63,7 @@ function Drawer() {
       const getData = async() => {
          setLoading(true); 
          const doc =   await db.collection('Users').doc(user.uid).
-          collection(`Task${drawerData.taskType}`).doc(drawerData.docId).get();
+          collection('Tasks').doc(drawerData.docId).get();
 
           doc.data().title &&  setTitle(doc.data().title);
           doc.data().description && setDescription(doc.data().description);
@@ -80,19 +80,16 @@ function Drawer() {
       const markDone = async(e) => {
 
           await db.collection('Users').doc(user.uid).
-          collection('TaskDone').doc().set({
-              title : title,
-              description : description,
-              dueDate: dueDate,
-              assigne : assigne,
-              time: Date.now(),
+          collection('Tasks').doc(drawerData.docId).update({
+             
+            tasktype : 'Done',
+            time : Date.now(),
 
 
           });
 
 
-          await db.collection('Users').doc(user.uid).
-          collection(`Task${drawerData.taskType}`).doc(drawerData.docId).delete();
+        
 
           setShowDrawer(false);
 
@@ -103,19 +100,14 @@ function Drawer() {
       const markDoing = async(e) => {
 
         await db.collection('Users').doc(user.uid).
-        collection('TaskDoing').doc().set({
-            title : title,
-            description : description,
-            dueDate: dueDate,
-            assigne : assigne,
-            time: Date.now(),
-
+        collection('Tasks').doc(drawerData.docId).update({
+            
+            tasktype : 'Doing',
+            time : Date.now(),
+              
 
         });
 
-
-        await db.collection('Users').doc(user.uid).
-        collection(`Task${drawerData.taskType}`).doc(drawerData.docId).delete();
 
         setShowDrawer(false);
 
@@ -127,7 +119,7 @@ function Drawer() {
 
 
         await db.collection('Users').doc(user.uid).
-        collection(`Task${drawerData.taskType}`).doc(drawerData.docId).delete();
+        collection(`Tasks`).doc(drawerData.docId).delete();
 
         setShowDrawer(false);
 
@@ -154,7 +146,7 @@ function Drawer() {
        <div  className= 'drawer'>
 
 
-        { loading ? <Shimmer height = '100%' width  = '100%'></Shimmer> :   <div>
+          { loading ? <Shimmer height = '100%' width  = '100%'></Shimmer> :   <div>
           <div className = 'drawer-btn'>
            { drawerData.taskType === 'Done' && <Button onClick = {deleteTask}>Delete</Button>}
 
@@ -194,7 +186,7 @@ function Drawer() {
                 <label>
                     Task Description
                 </label>
-                <input onChange = {(e) => setDescription(e.target.value)} value = {description} type='text'></input>
+                <textarea onChange = {(e) => setDescription(e.target.value)} value = {description} type='text'></textarea>
 
             </div>
 

@@ -1,17 +1,17 @@
 import './App.css';
 import Sidebar from './Views/Sidebar';
 import Home from './Views/Home'
-import Navbar from './Views/Components/Navbar';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import Dashboard from './Views/Dashboard'
 import MyTasks from './Views/MyTasks';
 import Goals from './Views/Goals';
-import Inbox from './Views/Inbox';
 import Login from './Views/Login';
 import Signup from './Views/Signup';
 import { auth } from './firebase';
 import { useEffect } from 'react';
 import { useStateValue } from './StateProvider';
+import Teams from './Views/Teams';
+import Team from './Views/Team';
 
 function App() {
 
@@ -62,15 +62,20 @@ function App() {
             <Sidebar/>
             <Goals/>
           </Route> 
-          <Route path="/inbox">
+          <Route path="/teams">
             <Sidebar/>
-            <Inbox/>
+            <Teams/>
           </Route> 
 
           <Route path="/home"> 
             <Sidebar/>
             <Home/>
           </Route> 
+
+          <Route path='/team'>
+            <Sidebar/>
+            <Team/>
+          </Route>
 
          
           <Route path='/signup'>

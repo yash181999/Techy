@@ -22,9 +22,9 @@ import { AllOut, AllOutSharp, CheckCircle, Dashboard, Home, Inbox , InboxOutline
 
     }, 
     {
-        link : '/inbox',
-        name: "Inbox",
-        icon : <InboxOutlined fontSize='small'/>
+        link : '/teams',
+        name: "Teams",
+        icon : <InboxOutlined fontSize='as'/>
 
     },
     {

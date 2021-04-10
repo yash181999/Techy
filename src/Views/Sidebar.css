@@ -10,6 +10,10 @@
   transition: all 0.15s ease-in-out;
 }
 
+*:link {
+  text-decoration: none;
+}
+
 
 
 /* for hiding the scroll bar */
@@ -133,3 +137,30 @@
   background-color: rgba(128, 128, 128, 0.3);
 }
 
+ .sidebar-btn-team {
+  width: 100%;
+
+  padding-bottom: 20px;
+  padding-top: 20px;
+  align-items: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-color: rgba(128, 128, 128, 0.3);
+  color: white;
+   justify-content: space-evenly;  
+   display: flex;
+}
+
+.sidebar-teamList{
+     overflow: scroll;
+     display: flex;
+     align-items: center;
+    flex-direction: column;
+     
+}
+
+.sidebar-teamList > button {
+   color: white;
+   font-size: 10px;
+}

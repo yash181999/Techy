@@ -24,6 +24,8 @@ const AppProvider = ({children}) => {
 
     const [{user}, dispatch] = useStateValue();
 
+    const [currentTeamData, setCurrentTeamData] = useState();
+
     useEffect( () => {
         
         if(user!=null){
@@ -73,7 +75,9 @@ const AppProvider = ({children}) => {
             uId,
             setUId,
             drawerData,
-            setDrawerData
+            setDrawerData,
+            currentTeamData,
+            setCurrentTeamData,
             
             
         }

@@ -1,0 +1,106 @@
+.team-with-sidebar {
+    transition: all 0.1s linear;
+    margin-left: 240px;
+    overflow: hidden;
+    background-color: #f5f8f9;
+   
+  }
+  
+  .team {
+    
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.3s linear;  
+    background-color: white;
+  }
+
+  .team-center{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    position: relative;
+    display: block;
+  }
+
+  .team-container{
+    position: relative;
+    height: 50px;
+    
+  
+    
+    
+    border-radius: 50px;
+    transition: all 0.1s linear;
+}
+
+.team-container:hover{
+    transition: all 0.1s linear;
+    transform: scale(1.1);
+     
+    cursor:grab;
+    /* position: relative;
+    height: 210px;
+    margin-top: 20px;
+    padding-top: 20px;
+    width: 150px;
+    border-radius: 20px; */
+}
+
+.add-team{
+  
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    border-radius: 20px;
+    background-color: white;
+    border: 1.5px dotted black;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+ 
+  width: 100%;
+ justify-content: center;
+  overflow: scroll;
+
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.team-btn-container {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+}
+
+.team-btn-container>button{
+  width: 100%;
+  background-color:#FF6666;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+  
+}
+
+.team-btn-container>button:hover{
+   background-color: white;
+   color: #FF6666;
+}
+

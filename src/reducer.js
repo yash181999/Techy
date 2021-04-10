@@ -8,7 +8,12 @@ const reducer = (state,action) => {
             return{
               ...state,
               user : action.user,
-            }    
+            }  
+        case 'SET_TEAM_DATA' :
+            return {
+            ...state,
+            teamData : action.teamData,
+        }      
           
 
         default:

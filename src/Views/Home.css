@@ -65,10 +65,11 @@
 
 .recent-projects{
       position: relative;
-      height: 210px;
+      height: 170px;
       margin-top: 20px;
       padding-top: 20px;
-      width: 150px;
+      
+      width: 130px;
       border-radius: 20px;
       transition: all 0.1s linear;
 }
@@ -77,6 +78,7 @@
       transition: all 0.1s linear;
       transform: scale(1.1);
       background-color: #f5f8f9;  
+      cursor:grab;
       /* position: relative;
       height: 210px;
       margin-top: 20px;
@@ -89,16 +91,13 @@
       margin-left: auto;
       margin-right: auto;
       position: relative;
-      width: 130px;
-      height: 130px;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 100px;
       display: flex;
       border-radius: 20px;
-      background-color: lightsteelblue;
+      background-color: white;
+      border: 1.5px dotted black;
 }
 
-.add-project>p{
-      position: relative;
-      margin-left: auto;
-      margin-right: auto;
-      color: red;
-}

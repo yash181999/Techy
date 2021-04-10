@@ -7,10 +7,9 @@ import {DateRange, DateRangePicker} from 'react-date-range';
 import TaskListItem from './TaskListItem';
 import { db } from '../../firebase';
 import { useStateValue } from '../../StateProvider';
-import TaskAddModal from './TaskAddModal';
 import ReactModal from 'react-modal';
 
-const customStyles = {
+export const customStyles = {
   content : {
     
     position: 'relative',
@@ -29,13 +28,34 @@ const customStyles = {
   }
 };
 
+export const modalInputStyle =  { 
+   border : '1px solid',
+   height : '30px', 
+   width : '98%', 
+   position : 'relative', 
+   fontSize : '16px',
+   borderRadius : '3px',
+   outline : 'none',
+   marginBottom : '10px'
+}
 
-function TaskContainer({taskType,index}) {
+export const  modalBtnStyle = {
+  backgroundColor  : 'orange', 
+  color : 'white' , 
+  width : '80%' , 
+  marginLeft:'10%',
+  marginTop : '10px'
+}
 
-    const [showInfo, setShowInfo] = useState(false);
-    const [taskTitle, setTaskTitle] = useState(taskType);
+
+
+
+
+function TaskContainer({taskType}) {
+
+  
     const [titleClicked, setTitleClicked] = useState(false);
-    const [cardCounter, setCardCounter]  = useState(1);
+   
     const [{user}]  = useStateValue();
     const [snapShot,setSnapShot] = useState([]);  
     const [openTaskAddModal, setOpenTaskAddModal] = useState(false);
@@ -50,7 +70,8 @@ function TaskContainer({taskType,index}) {
     },[])
 
     const getAllTasks = () => {
-        db.collection('Users').doc(user.uid).collection(`Task${taskType}`).onSnapshot((querySnapshot) => {
+        db.collection('Users').doc(user.uid).collection(`Tasks`)
+        .orderBy('time','desc').onSnapshot((querySnapshot) => {
              setSnapShot(querySnapshot.docs);
         })
     }
@@ -59,12 +80,13 @@ function TaskContainer({taskType,index}) {
     const addTask = async() => {
        try{
         if(taskValue != '') {
-          await db.collection('Users').doc(user.uid).collection(`Task${taskType}`).doc().set({
+          await db.collection('Users').doc(user.uid).collection(`Tasks`).doc().set({
                 'title' : taskValue,
                 'assigne' : assigne,
                 'time' : Date.now(),
                  'dueDate'  : dueDate,
                  description : description,
+                 tasktype : taskType
           });
         }  
        
@@ -100,15 +122,15 @@ function TaskContainer({taskType,index}) {
                       <div style={{height : '0px', border : '0.1px solid gray', marginTop: '5px'}}></div>
 
                       <div style={{marginTop : '10px'}}>
-                        <input type =  'text' placeholder = 'Task' value = {taskValue} onChange = {(e)=>setTaskValue(e.target.value)}  style={{border: '1px solid', height: '30px', width : '98%', position : 'relative', fontSize :' 16px',borderRadius:'3px', outline:'none',}}></input>
+                        <input type =  'text' placeholder = 'Task' value = {taskValue} onChange = {(e)=>setTaskValue(e.target.value)}  style={modalInputStyle}></input>
                           
-                        <input type =  'text' value = {assigne} onChange = {(e)=>setAssigne(e.target.value)} placeholder = 'Assigne'  style={{border: '1px solid', marginTop: '10px', height: '30px', width : '98%', fontSize :' 16px', position : 'relative', borderRadius:'3px', outline:'none',}}></input>
+                        <input type =  'text' value = {assigne} onChange = {(e)=>setAssigne(e.target.value)} placeholder = 'Assigne'  style={modalInputStyle}></input>
 
-                        <input type =  'date' value = {dueDate} onChange = {(e)=>setDueDate(e.target.value)} placeholder = 'Due Date'  style={{border: '1px solid', marginTop: '10px', height: '30px', width : '98%', fontSize :' 16px', position : 'relative', borderRadius:'3px', outline:'none',}}></input>
+                        <input type =  'date' value = {dueDate} onChange = {(e)=>setDueDate(e.target.value)} placeholder = 'Due Date'  style={modalInputStyle}></input>
 
-                        <input type =  'text' value = {description} onChange = {(e)=>setDescription(e.target.value)} placeholder = 'Description'  style={{border: '1px solid', marginTop: '10px', height: '30px', width : '98%', fontSize :' 16px', position : 'relative', borderRadius:'3px', outline:'none',}}></input>
+                        <input type =  'text' value = {description} onChange = {(e)=>setDescription(e.target.value)} placeholder = 'Description'  style={modalInputStyle}></input>
 
-                        <Button style = {{backgroundColor  : 'orange', color : 'white' , width : '80%' , marginLeft:'10%',marginTop : '10px'}}  onClick = {addTask} >Submit</Button>  
+                        <Button style = {modalBtnStyle}  onClick = {addTask} >Submit</Button>  
 
                       </div>
                       
@@ -131,9 +153,6 @@ function TaskContainer({taskType,index}) {
                       </IconButton> 
 
                       
-                      
-
-
                       <IconButton  className='task-moreBtn'>
                         <MoreHoriz/>
                       </IconButton> 
@@ -144,7 +163,8 @@ function TaskContainer({taskType,index}) {
                    {
 
                           snapShot.map((val) => {
-                             return val != null &&  <TaskListItem key={val.id} taskType  = {taskType} docId = {val.id} title={val.data().title} assigne = {val.data().assigne}></TaskListItem>
+                             return val != null && val.data().tasktype === taskType &&  
+                             <TaskListItem key={val.id} taskType  = {taskType} docId = {val.id} data={val.data()} ></TaskListItem>
                           })
 
                    }

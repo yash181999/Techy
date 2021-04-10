@@ -77,8 +77,8 @@ function MyTasks() {
              <div className= 'tasks-center'>
                
                {
-                  taskTypes.map((val,i) => {
-                    return  <TaskContainer key = {val.docId} taskType = {val}></TaskContainer>
+                  taskTypes.map((val) => {
+                    return  <TaskContainer key = {Math.random()} taskType = {val}></TaskContainer>
                   })
                  
                }

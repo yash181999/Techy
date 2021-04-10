@@ -28,7 +28,7 @@ let useClickOutside = (handler) => {
 
 }
 
-function TaskListItem({ taskType,docId,title,assigne}) {
+function TaskListItem({ taskType,docId,data}) {
     const [showInfo, setShowInfo] = useState(false);
     const [showDatePicker,setShowDatePicker] = useState(false);
     const [startDate,setStartDate] = useState(new Date());
@@ -85,14 +85,11 @@ function TaskListItem({ taskType,docId,title,assigne}) {
     }
     const markDone = async(e) => {
         e.stopPropagation();
+  
+        await db.collection('Users').doc(user.uid).collection(`Tasks`).doc(docId).update({
+                tasktype : 'Done',
+                time : Date.now(),
 
-
-        db.collection('Users').doc(user.uid).collection(`Task${taskType}`).doc(docId).delete();
-        console.log(docId);
-        await db.collection('Users').doc(user.uid).collection(`TaskDone`).doc().set({
-                'title'  : title,
-                'assigne' : assigne,
-                'time' : Date.now(),
         });       
     }
 
@@ -101,8 +98,7 @@ function TaskListItem({ taskType,docId,title,assigne}) {
         setShowDrawer(true);
         setDrawerData({
              docId : docId,
-             taskType : taskType,
-                  
+             taskType : taskType,              
         });
     }
 
@@ -110,14 +106,24 @@ function TaskListItem({ taskType,docId,title,assigne}) {
     return (
         <div className='task' 
                    onClick={openDrawer} 
-                   onMouseOver={handleMouseHover} 
-                   onMouseLeave={handelMouseLeave}>
+                 >
                      
-                      <div className = 'task-detail'>
-                         { taskType !== 'Done' && <IconButton onClick = {markDone}>
-                            <CheckCircleOutline size='small'/>
+                      <div >
+                        <div className = 'task-detail'>
+                        { taskType !== 'Done' && <IconButton onClick = {markDone}>
+                            <CheckCircleOutline fontSize='small' />
                         </IconButton>}
-                        <p>{title}</p>
+                        <p>{data.title}</p>
+                        </div>
+
+                        <div className = 'task-desc'>
+                            <span>{data.dueDate}</span>
+                            <span>{data.assigne !== 'none' && data.assigne}</span>
+                        </div>
+
+                        <p>{data.description !== 'none' ? `${data.description}` : ''}</p>
+                        
+                        
                       </div>
 
                      
